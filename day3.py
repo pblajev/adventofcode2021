@@ -1,34 +1,31 @@
 #!/usr/bin/env python
 
+# Build a string from each column and then use
+# Counter(string) and it will count the 1s and 0s
+
 from collections import Counter
 
 def main():
-    f = open('day3-input-short.txt', 'r')
-
-    lineN = 0
+    # Define the dictionary we are going to use
     collector_d = {}
+    lineN = 1
 
+    f = open('day3-input-short.txt', 'r')
     for line in f:
-        lineN += 1
         posN = 0
-        print('For line ', line)
-        print(Counter(line))
-        break
 
         # Iterate through the line string
         while posN < len(line)-1:
-
-            # Build the dictionary
-            if line[posN] == '0':
-                collector_d['l'+str(lineN)+'p'+str(posN)+'0'] = 1
-                collector_d['l'+str(lineN)+'p'+str(posN)+'1'] = 2
+            # Build the strings from each column
+            if lineN == 1:
+                # Empty dictionary
+                collector_d[posN] = line[posN]
             else:
-                collector_d['l'+str(lineN)+'p'+str(posN)+'0'] = 2
-                collector_d['l'+str(lineN)+'p'+str(posN)+'1'] = 1
-
-            print("Position ", posN, "is ", line[posN])
+                collector_d[posN] = collector_d[posN]+line[posN]
             posN += 1
 
-    print(collector_d.items())
+        lineN +=1
+
+    print(collector_d)
 if __name__ == "__main__":
     main()
