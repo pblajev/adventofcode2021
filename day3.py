@@ -14,18 +14,24 @@ def main():
     for line in f:
         posN = 0
 
+        print('Line: ', line)
+
         # Iterate through the line string
         while posN < len(line)-1:
             # Build the strings from each column
             if lineN == 1:
                 # Empty dictionary
+                print('Empty adding:', line[posN])
                 collector_d[posN] = line[posN]
             else:
+                print('FULL adding:', line[posN])
                 collector_d[posN] = collector_d[posN]+line[posN]
             posN += 1
 
         lineN +=1
 
     print(collector_d)
+
+    print(Counter(collector_d[0]))
 if __name__ == "__main__":
     main()
